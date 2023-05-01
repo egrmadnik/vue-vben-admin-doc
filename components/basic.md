@@ -1,18 +1,18 @@
-# Basic 基础组件
+# Basic Components
 
-一些比较基础的通用组件使用方式
+Some of the more basic ways to use generic components
 
 ## BasicTitle
 
-用于显示标题，可以显示帮助按钮及文本
+Used to display headers, can display help buttons and text
 
 ### Usage
 
 ```vue
 <template>
   <div>
-    <BasicTitle helpMessage="提示1">标题</BasicTitle>
-    <BasicTitle :helpMessage="['提示1', '提示2']">标题</BasicTitle>
+    <BasicTitle helpMessage="Tip 1">Title</BasicTitle>
+    <BasicTitle :helpMessage="['Tip 1', 'Tip 2']">Title</BasicTitle>
   </div>
 </template>
 <script>
@@ -26,21 +26,22 @@
 
 ### Props
 
-| 属性        | 类型               | 默认值  | 说明                     |
+
+| Properties | Type | Default | Description |
 | ----------- | ------------------ | ------- | ------------------------ |
-| helpMessage | `string｜string[]` | -       | 标题右侧帮助按钮信息     |
-| span        | `boolean`          | `false` | 是否显示标题左侧蓝色色块 |
-| normal      | `boolean`          | `false` | 将文字默认化，不加粗     |
+| helpMessage | `string｜string[]` | - | Help button message to the right of the header span
+| span | `boolean` | `false` | Whether or not to show the blue block to the left of the title |
+| normal | `boolean` | `false` | Defaults the text to unbolded |
 
 ### Slots
 
-| 名称    | 说明     |
+| Name | Description |
 | ------- | -------- |
-| default | 标题文本 |
+| default | title text |
 
 ## BasicArrow
 
-带动画的箭头组件
+Arrowhead component with animated drawing
 
 ### Usage
 
@@ -61,24 +62,25 @@
 
 ### Props
 
-| 属性   | 类型      | 默认值  | 说明                          |
+
+| Properties | Type | Default | Description |
 | ------ | --------- | ------- | ----------------------------- |
-| expand | `boolean` | `false` | 箭头展开状态                  |
-| top    | `boolean` | `false` | 箭头默认向上                  |
-| bottom | `boolean` | `false` | 箭头默认向下                  |
-| inset  | `boolean` | `false` | 取消 padding/margin，用于内嵌 |
+| expand | `boolean` | `false` | arrow expand state |
+| top | `boolean` | `false` | default arrow up |
+| bottom | `boolean` | `false` | default down
+| inset | `boolean` | `false` | Cancel padding/margin for inset |
 
 ## BasicHelp
 
-帮助按钮组件
+Help button component
 
 ### Usage
 
 ```vue
 <template>
   <div>
-    <BasicHelp :text="['提示1', '提示2']" />
-    <BasicHelp text="提示" />
+    <BasicHelp :text="['Tip1', 'Tip2']" />
+    <BasicHelp text="hints" />
   </div>
 </template>
 <script>
@@ -92,17 +94,18 @@
 
 ### Props
 
-| 属性      | 类型               | 默认值  | 可选值 | 说明                                       |
+| Properties | Type | Default | Optional | Description |
 | --------- | ------------------ | ------- | ------ | ------------------------------------------ |
-| fontSize  | `string`           | `14px`  | -      | 字体大小                                   |
-| color     | `string`           | #fff    | -      | 颜色                                       |
-| text      | `string｜string[]` | -       | -      | 文本列表                                   |
-| showIndex | `boolean`          | true    | -      | 是否显示序号,在 text 为 string[]情况下生效 |
-| maxWidth  | `string`           | `600px` | -      | 最大宽度                                   |
-| placement | `string`           | `right` | -      | 显示方向，参考 Tooltip 组件                |
+| fontSize | `string` | `14px` | - | fontSize |
+| color | `string` | #fff | - | color |
+| text | `string｜string[]` | - | - | Text list |
+| showIndex | `boolean`| true | - | Whether to show the number, if text is string[] |
+| maxWidth | `string` | `600px` | - | maxWidth |
+| placement | `string` | `right` | - | Display orientation, see Tooltip component |
+| -      | 显示方向，参考 Tooltip 组件                |
 
 ### Slots
 
-| 名称    | 说明     |
+| Name | Description |
 | ------- | -------- |
-| default | 默认图标 |
+| default | default icon |
