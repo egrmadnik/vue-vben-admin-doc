@@ -25,4 +25,4 @@ Role information or permission code Permission mode is automatically distinguish
 
 | 属性 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| value | `RoleEnum,RoleEnum[],string,string[]` | - | 角色信息或者权限编码。会自动区分权限模式 |
+| value | `RoleEnum,RoleEnum[],string,string[]` | - | Role information or permission code Permission mode is automatically distinguished |
