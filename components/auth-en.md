@@ -22,7 +22,6 @@ Role information or permission code Permission mode is automatically distinguish
 ```
 
 ## Props
-
-| 属性 | 类型 | 默认值 | 说明 |
+| Properties | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | `RoleEnum,RoleEnum[],string,string[]` | - | Role information or permission code Permission mode is automatically distinguished |
