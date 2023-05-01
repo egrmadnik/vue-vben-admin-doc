@@ -1,6 +1,6 @@
 # Authority
 
-aaaa
+Role information or permission code Permission mode is automatically distinguished
 
 ## Usage
 
