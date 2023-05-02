@@ -1,18 +1,18 @@
-# 项目配置项
+# Project configuration items
 
-用于修改项目的配色、布局、缓存、多语言、组件默认配置
+Used to modify the project's color scheme, layout, cache, multi-language, component default configuration
 
-## 环境变量配置
+## Environment variables configuration
 
-项目的环境变量配置位于项目根目录下的 [.env](https://github.com/vbenjs/vue-vben-admin/blob/main/.env)、[.env.development](https://github.com/vbenjs/vue-vben-admin/blob/main/.env.development)、[.env.production](https://github.com/vbenjs/vue-vben-admin/blob/main/.env.production)
+The project's environment variables are configured in the project root directory in [.env](https://github.com/vbenjs/vue-vben-admin/blob/main/.env), [.env.development](https://github.com/vbenjs/vue vben-admin/blob/main/.env.development), [.env.production](https://github.com/vbenjs/vue-vben-admin/blob/main/.env.production)
 
-具体可以参考 [Vite 文档](https://github.com/vitejs/vite#modes-and-environment-variables)
+For details, see [Vite Documentation](https://github.com/vitejs/vite#modes-and-environment-variables)
 
 ```bash
-.env                # 在所有的环境中被载入
-.env.local          # 在所有的环境中被载入，但会被 git 忽略
-.env.[mode]         # 只在指定的模式中被载入
-.env.[mode].local   # 只在指定的模式中被载入，但会被 git 忽略
+.env # Loaded in all environments
+.env.local # Loaded in all environments, but will be ignored by git
+.env.[mode] # only be loaded in the specified mode
+.env.[mode].local # Loaded only in the specified mode, but ignored by git
 
 ```
 
