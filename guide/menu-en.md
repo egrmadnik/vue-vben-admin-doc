@@ -1,48 +1,48 @@
-# 菜单
+# Menu
 
-项目菜单配置存放于 [src/router/menus](https://github.com/vbenjs/vue-vben-admin/tree/main/src/router/menus) 下面
+The project menu configuration is stored in the [src/router/menus](https://github.com/vbenjs/vue-vben-admin/tree/main/src/router/menus) below
 
-::: tip 提示
+::: tip Tips
 
-菜单必须和路由匹配才能显示
+The menu must match the route to be displayed
 
 :::
 
-## 菜单项类型
+## Menu item type
 
 ```ts
 export interface Menu {
-  //  菜单名
+  // Menu Name
   name: string;
-  // 菜单图标,如果没有，则会尝试使用route.meta.icon
+  //menu icon, if not, it will try to use route.meta.icon
   icon?: string;
-  // 菜单路径
+  // Menu path
   path: string;
-  // 是否禁用
+  // Disable or not
   disabled?: boolean;
-  // 子菜单
+  // Submenu
   children?: Menu[];
-  // 菜单标签设置
+  // Menu tab settings
   tag: {
-    // 为true则显示小圆点
+    // True to show the dots
     dot: boolean;
-    // 内容
+    // Content
     content: string';
-    // 类型
+    //  Type
     type: 'error' | 'primary' | 'warn' | 'success';
   };
-  // 是否隐藏菜单
+  //  
   hideMenu?: boolean;
 }
 ```
 
-## 菜单模块
+## Menu Module
 
-一个菜单文件会被当作一个模块
+A menu file will be treated as a module
 
-::: tip 提示
+::: tip Tips
 
-children 的 path 字段不需要以`/`开头
+The path field of children does not need to start with `/`
 
 :::
 
@@ -70,7 +70,7 @@ const menu: MenuModule = {
 export default menu;
 ```
 
-以上模块会转化成以下结构
+The above modules will translate into the following structure
 
 ```ts
 [
@@ -89,12 +89,12 @@ export default menu;
 ]
 ```
 
-## 新增菜单
+## New menu
+Just add a new module file directly in [src/router/routes/modules](https://github.com/vbenjs/vue-vben-admin/tree/main/src/router/routes/modules).
 
-直接在 [src/router/routes/modules](https://github.com/vbenjs/vue-vben-admin/tree/main/src/router/routes/modules) 内新增一个模块文件即可。
+There is no need to introduce it manually, files placed in [src/router/routes/modules](https://github.com/vbenjs/vue-vben-admin/tree/main/src/router/routes/modules) will be loaded automatically.
 
-不需要手动引入，放在[src/router/routes/modules](https://github.com/vbenjs/vue-vben-admin/tree/main/src/router/routes/modules) 内的文件会自动被加载。
 
-## 菜单排序
+## Menu Sorting
 
-在菜单模块内，设置 `orderNo` 变量，数值越大，排序越靠后
+Within the menu module, set the `orderNo` variable, the larger the value, the further down the order
