@@ -53,79 +53,78 @@ VITE_GLOB_UPLOAD_URL=/upload
 VITE_GLOB_API_URL_PREFIX=
 ```
 
+::: warning Note
 
-::: warning 注意
+The `VITE_PROXY` and `VITE_GLOB_API_URL`, /api should be unique and not conflict with the name of the interface.
 
-这里配置的 `VITE_PROXY` 以及 `VITE_GLOB_API_URL`, /api 需要是唯一的，不要和接口有的名字冲突
+If your interface is something like `http://localhost:3000/api`, please consider replacing `VITE_GLOB_API_URL=/xxxx` with another name
 
-如果你的接口是 `http://localhost:3000/api` 之类的，请考虑将 `VITE_GLOB_API_URL=/xxxx` 换成别的名字
-
-:::
+::.
 
 ### .env.production
 
-生产环境适用
+For production environments
 
 ```bash
-# 是否开启mock
+### Enable or disable mock
 VITE_USE_MOCK=true
-# 接口地址 可以由nginx做转发或者直接写实际地址
+# Interface address can be forwarded by nginx or written directly to the actual address
 VITE_GLOB_API_URL=/api
-# 文件上传地址 可以由nginx做转发或者直接写实际地址
+# The file upload address can be forwarded by nginx or written directly to the actual address
 VITE_GLOB_UPLOAD_URL=/upload
-# 接口地址前缀，有些系统所有接口地址都有前缀，可以在这里统一加，方便切换
+# interface address prefix, some systems have prefixes for all interface addresses, you can add them here to make it easy to switch
 VITE_GLOB_API_URL_PREFIX=
-# 是否删除Console.log
+# Whether to delete the Console.log
 VITE_DROP_CONSOLE=true
-# 资源公共路径,需要以 / 开头和结尾
+# Resource public path, needs to start and end with /
 VITE_PUBLIC_PATH=/
-# 打包是否输出gz｜br文件
-# 可选: gzip | brotli | none
-# 也可以有多个, 例如 ‘gzip’|'brotli',这样会同时生成 .gz和.br文件
+# Whether to output gz|br files as packaged
+# Optional: gzip | brotli | none
+# There can be more than one, e.g. 'gzip'|'brotli', this will generate both .gz and .br files
 VITE_BUILD_COMPRESS = 'gzip'
-# 打包是否压缩图片
+# Pack or not compress images
 VITE_USE_IMAGEMIN = false
-# 打包是否开启pwa功能
+# Whether to package with pwa enabled or not
 VITE_USE_PWA = false
-# 是否兼容旧版浏览器。开启后打包时间会慢一倍左右。会多打出旧浏览器兼容包,且会根据浏览器兼容性自动使用相应的版本
+# If or not it is compatible with older browsers. If this is enabled, the packaging time will be twice as slow. It will be more compatible with older browsers, and will automatically use the corresponding version according to browser compatibility
 VITE_LEGACY = false
-```
+VITE_LEGACY = false
 
-## 生产环境动态配置
+## Dynamic configuration of production environment
 
-### 说明
+### Description
 
-当执行`yarn build`构建项目之后，会自动生成 `_app.config.js` 文件并插入 `index.html`。
+When `yarn build` is executed, the `_app.config.js` file is automatically generated and inserted into `index.html` after the project is built.
 
-**注意: 开发环境不会生成**
+**Note: The development environment does not generate **
 
 ```js
 // _app.config.js
-// 变量名命名规则  __PRODUCTION__xxx_CONF__   xxx：为.env配置的VITE_GLOB_APP_SHORT_NAME
+// Variable name naming rules __PRODUCTION__xxx_CONF__ xxx: VITE_GLOB_APP_SHORT_NAME for .env configuration
 window.__PRODUCTION__VUE_VBEN_ADMIN__CONF__ = {
-  VITE_GLOB_APP_TITLE: 'vben admin',
-  VITE_GLOB_APP_SHORT_NAME: 'vue_vben_admin',
-  VITE_GLOB_API_URL: '/app',
-  VITE_GLOB_API_URL_PREFIX: '/',
-  VITE_GLOB_UPLOAD_URL: '/upload',
-};
+  VITE_GLOB_APP_TITLE: 'vben admin'.
+  VITE_GLOB_APP_SHORT_NAME: 'vue_vben_admin'.
+  VITE_GLOB_API_URL: '/app'.
+  VITE_GLOB_API_URL_PREFIX: '/'.
+  VITE_GLOB_UPLOAD_URL: '/upload'.
+}.
 ```
 
-### 作用
+### Role
 
-`_app.config.js` 用于项目在打包后，需要动态修改配置的需求，如接口地址。不用重新进行打包，可在打包后修改 `/dist/_app.config.js` 内的变量，刷新即可更新代码内的局部变量。
+`_app.config.js` is used for projects that need to dynamically modify the configuration requirements after packaging, such as the interface address. Instead of repackaging, you can modify the variables in `/dist/_app.config.js` after packaging and refresh to update the local variables in the code.
 
-### 如何获取全局变量
+### How to get global variables
 
-想要获取 `_app.config.js` 内的变量，可以使用 [src/hooks/setting/index.ts](https://github.com/vbenjs/vue-vben-admin/tree/main/src/hooks/setting/index.ts) 提供的函数来进行获取
+To get the variables in `_app.config.js`, you can use the function [src/hooks/setting/index.ts](https://github.com/vbenjs/vue-vben-admin/tree/main/src/hooks/setting/ index.ts) function to get them
 
-### 如何新增(新增一个可动态修改的配置项)
+### How to add (add a dynamically modifiable configuration item)
 
-1. 首先在 `.env` 或者对应的开发环境配置文件内，新增需要可动态配置的变量，需要以 `VITE_GLOB_`开头
+1. First, in `.env` or the corresponding development environment configuration file, add a variable that needs to be dynamically configurable, starting with `VITE_GLOB_`. 2.
 
-2. `VITE_GLOB_` 开头的变量会自动加入环境变量，通过在 `src/types/config.d.ts` 内修改 `GlobEnvConfig` 和 `GlobConfig` 两个环境变量的值来定义新添加的类型
+2. The variables starting with `VITE_GLOB_` will be automatically added to the environment variables, and the newly added types will be defined by modifying the values of the `GlobEnvConfig` and `GlobConfig` environment variables in `src/types/config.d.ts`.
 
-3. [useGlobSetting](https://github.com/vbenjs/vue-vben-admin/tree/main/src/hooks/setting/index.ts) 函数中添加刚新增的返回值即可
+3. Add the new return value to the [useGlobSetting](https://github.com/vbenjs/vue-vben-admin/tree/main/src/hooks/setting/index.ts) function
 
 ```js
 const {
@@ -477,54 +476,53 @@ export const SIDE_BAR_BG_COLOR_LIST: string[] = [
   '#383f45',
 ];
 ```
+# Component default parameter configuration
 
-## 组件默认参数配置
-
-在 [src/settings/componentSetting.ts](https://github.com/vbenjs/vue-vben-admin/tree/main/src/settings/componentSetting.ts) 内配置
+Configured within [src/settings/componentSetting.ts](https://github.com/vbenjs/vue-vben-admin/tree/main/src/settings/componentSetting.ts)
 
 ```ts
-// 用于配置某些组件的常规配置，而无需修改组件
-import type { SorterResult } from '../components/Table';
+// Used to configure the general configuration of certain components without modifying them
+import type { SorterResult } from '... /components/Table'.
 
 export default {
-  // 表格配置
+  // Table configuration
   table: {
-    // 表格接口请求通用配置，可在组件prop覆盖
-    // 支持 xxx.xxx.xxx格式
+    // Generic configuration for table interface requests, can be overridden in component prop
+    // Supports xxx.xxx.xxx format
     fetchSetting: {
-      // 传给后台的当前页字段
-      pageField: 'page',
-      // 传给后台的每页显示多少条的字段
-      sizeField: 'pageSize',
-      // 接口返回表格数据的字段
-      listField: 'items',
-      // 接口返回表格总数的字段
-      totalField: 'total',
-    },
-    // 可选的分页选项
-    pageSizeOptions: ['10', '50', '80', '100'],
-    //默认每页显示多少条
-    defaultPageSize: 10,
-    // 默认排序方法
+      // Current page field passed to the backend
+      pageField: 'page'.
+      // field passed to the backend for how many items to display per page
+      sizeField: 'pageSize'.
+      // The field of the table data returned by the interface
+      listField: 'items'.
+      // field that returns the total number of items in the table
+      totalField: 'total'.
+    }.
+    // Optional paging options
+    pageSizeOptions: ['10', '50', '80', '100'].
+    // default number of items to display per page
+    defaultPageSize: 10.
+    // default sorting method
     defaultSortFn: (sortInfo: SorterResult) => {
-      const { field, order } = sortInfo;
+      const { field, order } = sortInfo.
       return {
-        // 排序字段
-        field,
-        // 排序方式 asc/desc
-        order,
-      };
-    },
-    // 自定义过滤方法
+        // Sort fields
+        field.
+        // sort by asc/desc
+        order.
+      }.
+    }.
+    // Custom filter method
     defaultFilterFn: (data: Partial<Recordable<string[]>>) => {
-      return data;
-    },
-  },
-  // 滚动组件配置
+      return data.
+    }.
+  }.
+  // Scrolling component configuration
   scrollbar: {
-    // 是否使用原生滚动样式
-    // 开启后，菜单，弹窗，抽屉会使用原生滚动条组件
-    native: false,
-  },
-};
+    // Whether to use native scrolling style
+    // When enabled, the menu, popup, and drawer will use the native scrollbar component
+    native: false.
+  }.
+}.
 ```
