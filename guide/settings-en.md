@@ -15,57 +15,44 @@ For details, see [Vite Documentation](https://github.com/vitejs/vite#modes-and-e
 .env.[mode].local # Loaded only in the specified mode, but ignored by git
 
 ```
+::: tip A gentle reminder
 
-::: tip 温馨提醒
-
-- 只有以 `VITE_ ` 开头的变量会被嵌入到客户端侧的包中，你可以项目代码中这样访问它们：
+- Only variables starting with `VITE_ ` will be embedded in the client-side package, and you can access them in the project code like this:
 
 ```js
-console.log(import.meta.env.VITE_PROT);
+console.log(import.meta.env.VITE_PROT).
 ```
 
-- 以 `VITE_GLOB_*` 开头的的变量，在打包的时候，会被加入[\_app.config.js](#生产环境动态配置)配置文件当中.
+- The variables starting with ``VITE_GLOB_*` are added to the [\_app.config.js](#production environment dynamic configuration) configuration file during packaging.
 
-:::
+::.
 
-### 配置项说明
+### Configuration item description
 
 ### .env
 
-所有环境适用
+For all environments
 
 ```bash
-# 端口号
-VITE_PORT=3100
-# 网站标题
-VITE_GLOB_APP_TITLE=vben admin
-# 简称，用于配置文件名字 不要出现空格、数字开头等特殊字符
-VITE_GLOB_APP_SHORT_NAME=vben_admin
-```
-
-### .env.development
-
-开发环境适用
-
-```bash
-# 是否开启mock数据，关闭时需要自行对接后台接口
+# Whether to turn on mock data or not, when off, you need to dock the backend interface by yourself
 VITE_USE_MOCK=true
-# 资源公共路径,需要以 /开头和结尾
+# Resource public path, need to start and end with /
 VITE_PUBLIC_PATH=/
-# 是否删除Console.log
+# Whether to delete the Console.log
 VITE_DROP_CONSOLE=false
-# 本地开发代理，可以解决跨域及多地址代理
-# 如果接口地址匹配到，则会转发到http://localhost:3000，防止本地出现跨域问题
-# 可以有多个，注意多个不能换行，否则代理将会失效
-VITE_PROXY=[["/api","http://localhost:3000"],["api1","http://localhost:3001"],["/upload","http://localhost:3001/upload"]]
-# 接口地址
-# 如果没有跨域问题，直接在这里配置即可
+# local development proxy, can solve cross-domain and multi-address proxy
+# If the interface address is matched, it will be forwarded to http://localhost:3000 to prevent local cross-domain problems
+# can have more than one, note that multiple can not line feed, otherwise the proxy will fail
+VITE_PROXY=[["/api", "http://localhost:3000"],["api1", "http://localhost:3001"],["/upload", "http://localhost:3001/upload"]]
+# Interface address
+# If there are no cross-domain issues, just configure it here directly
 VITE_GLOB_API_URL=/api
-# 文件上传接口  可选
+# File upload interface Optional
 VITE_GLOB_UPLOAD_URL=/upload
-# 接口地址前缀，有些系统所有接口地址都有前缀，可以在这里统一加，方便切换
+# interface address prefix, some systems have prefixes for all interface addresses, you can add them here, easy to switch
 VITE_GLOB_API_URL_PREFIX=
 ```
+
 
 ::: warning 注意
 
